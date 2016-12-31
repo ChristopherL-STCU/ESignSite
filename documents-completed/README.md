@@ -11,6 +11,7 @@ reload if you change any of the source files.
 ## Deploying
 
 Run `ng test --single-run --code-coverage` to verify no code changes broke existing functionality.
+Then view coverage report in `coverage/`.
 
 Run `ng lint` to verify there are not any code style issues.
 

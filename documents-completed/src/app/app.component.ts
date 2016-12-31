@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Query } from './query';
 import { CompletedDocumentsService } from './completed-documents.service';
 import { CompletedDocuments } from './completed-documents';
-import {AccordionModule} from 'ng2-accordion';
+import { AccordionModule } from 'ng2-accordion';
 
 @Component({
     selector: 'app-root',
@@ -42,12 +42,11 @@ export class AppComponent {
 
         this.completedDocumentsService
             .getCompletedDocuments(this.query)
-            .then(completedDocuments => {
+            .subscribe(completedDocuments => {
                 this.completedDocuments = completedDocuments;
                 this.submitted = false;
                 this.hasResult = true;
-            })
-            .catch(error => {
+            }, error => {
                 this.hasError = true;
                 this.submitted = false;
             });
