@@ -1,14 +1,26 @@
 import { DocumentsCompletedPage } from './app.po';
 
 describe('documents-completed App', function() {
-  let page: DocumentsCompletedPage;
+    let page: DocumentsCompletedPage;
 
-  beforeEach(() => {
-    page = new DocumentsCompletedPage();
-  });
+    beforeEach(() => {
+        page = new DocumentsCompletedPage();
+    });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
+    it('should set the start date time', () => {
+        page.navigateTo();
+
+        let today = new Date();
+        let yesterday = new Date(today.setDate(today.getDate() -1))
+
+        expect(page.getStartDate()).toEqual(yesterday.toLocaleDateString('en-US'));
+        expect(page.getStartTime()).toEqual('6');
+    });
+
+    it('should display completed documents', () => {
+        page.navigateTo();
+        page.retrieveCompletedDocuments();
+
+        expect(page.getCompletedCount().isDisplayed()).toBe(true);
+    });
 });

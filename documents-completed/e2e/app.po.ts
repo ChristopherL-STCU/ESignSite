@@ -1,11 +1,24 @@
 import { browser, element, by } from 'protractor';
 
 export class DocumentsCompletedPage {
-  navigateTo() {
-    return browser.get('/');
-  }
+    navigateTo() {
+        return browser.get('/');
+    }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
-  }
+    retrieveCompletedDocuments() {
+        element(by.buttonText('Look up')).click();
+    }
+
+    getStartDate() {
+        return element(by.id('startDate')).getAttribute('value');
+    }
+
+    getStartTime() {
+        return element(by.id('startTime')).getAttribute('value');
+    }
+
+    getCompletedCount() {
+        // by.binding not supported in angular2 yet
+        return element(by.css('.well-large span'));
+    }
 }

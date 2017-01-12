@@ -10,10 +10,12 @@ reload if you change any of the source files.
 
 ## Deploying
 
+Run `ng lint` to verify there are not any code style issues.
+
 Run `ng test --single-run --code-coverage` to verify no code changes broke existing functionality.
 Then view coverage report in `coverage/`.
 
-Run `ng lint` to verify there are not any code style issues.
+Run `ng serve` in one terminal and `ng e2e` in another to verify the application still functions.
 
 Run `ng github-pages:deploy --base-href /ESignSite/documents-completed/` to deploy.
 
