@@ -1,6 +1,12 @@
 export class Query {
-    constructor(
-        public startDate: string,
-        public startTime: number
-    ) { }
+    private _startDate: string;
+
+    constructor(startDate: Date, public startTime: number) {
+        this._startDate = startDate.getMonth() + 1 + '/' + startDate.getDate() + '/' + startDate.getFullYear();
+    }
+
+    get startDate(): string {
+        return this._startDate;
+    }
+
 }

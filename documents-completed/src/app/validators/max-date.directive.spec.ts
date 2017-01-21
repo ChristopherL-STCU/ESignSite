@@ -16,11 +16,11 @@ import { MaxDateDirective } from './max-date.directive';
     `
 })
 class TestComponent {
-    maxDate: string;
+    maxDate: number;
     toValidate: string;
 }
 
-describe('component: TestComponent', () => {
+describe('directive: MaxDateDirective', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule],
@@ -30,7 +30,7 @@ describe('component: TestComponent', () => {
 
     it('should be valid when date is the max', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.maxDate = '1/1/2017';
+        fixture.componentInstance.maxDate = Date.parse('1/1/2017');
         fixture.detectChanges();
         tick();
 
@@ -45,7 +45,7 @@ describe('component: TestComponent', () => {
 
     it('should be valid when max is not specified', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.maxDate = '';
+        fixture.componentInstance.maxDate = Date.parse('');
         fixture.detectChanges();
         tick();
 
@@ -60,7 +60,7 @@ describe('component: TestComponent', () => {
 
     it('should not be valid when date is after max', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.maxDate = '1/1/2017';
+        fixture.componentInstance.maxDate = Date.parse('1/1/2017');
         fixture.detectChanges();
         tick();
 
@@ -75,7 +75,7 @@ describe('component: TestComponent', () => {
 
     it('should not be valid when date is not specified', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.maxDate = '1/1/2017';
+        fixture.componentInstance.maxDate = Date.parse('1/1/2017');
         fixture.detectChanges();
         tick();
 

@@ -14,8 +14,8 @@ export class AppComponent {
     public query: Query;
     public submitted: boolean;
     public completedDocuments: CompletedDocuments;
-    public maxDate: string;
-    public minDate: string;
+    public maxDate: number;
+    public minDate: number;
     public hasError: boolean;
     public hasResult: boolean;
 
@@ -24,9 +24,9 @@ export class AppComponent {
         let weekFromToday = new Date(new Date().setDate(today.getDate() - 7));
         let yesterday = new Date(new Date().setDate(today.getDate() - 1));
 
-        this.query = new Query(yesterday.toLocaleDateString('en-US'), 6);
-        this.maxDate = today.toLocaleDateString('en-US');
-        this.minDate = weekFromToday.toLocaleDateString('en-US');
+        this.query = new Query(yesterday, 6);
+        this.maxDate = today.getTime();
+        this.minDate = weekFromToday.getTime();
 
         this.completedDocuments = new CompletedDocuments([], 0);
         this.submitted = false;
@@ -53,7 +53,7 @@ export class AppComponent {
     }
 
     formatEndDate(form) {
-        let startDate = new Date(this.query.startDate.replace(/\u200E/g, '')); // IE 0 width char string removal
+        let startDate = new Date(this.query.startDate);
         let endDate = (new Date(startDate.setDate(startDate.getDate() + 1))).toLocaleDateString('en-US');
         return form.valid
             ? endDate + ' ' + this.query.startTime + ':00'

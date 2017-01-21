@@ -28,7 +28,7 @@ describe('CompletedDocumentsService', () => {
     beforeEach(inject([Http, XHRBackend], (http: Http, be: MockBackend) => {
         backend = be;
         service = new CompletedDocumentsService(http);
-        query = new Query('1/1/2017', 0);
+        query = new Query(new Date(), 0);
     }));
 
     it('should retrieve completed documents', async(() => {

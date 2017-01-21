@@ -13,7 +13,7 @@ export class MinDateDirective implements Validator, OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         const change = changes['appMinDate'];
         if (change) {
-            this.valFn = minDateValidator(Date.parse(change.currentValue.replace(/\u200E/g, ''))); // IE 0 width char string removal
+            this.valFn = minDateValidator(change.currentValue);
         } else {
             this.valFn = Validators.nullValidator;
         }
@@ -28,7 +28,7 @@ export function minDateValidator(appMinDate): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         const controlDate = control.value === null || control.value === undefined
             ? null
-            : Date.parse(control.value.replace(/\u200E/g, '')); // IE 0 width char string removal
+            : Date.parse(control.value);
 
         return isNaN(appMinDate) || isNaN(controlDate) || controlDate < appMinDate
             ? { 'appMinDate': { controlDate } }

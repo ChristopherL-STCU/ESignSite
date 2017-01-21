@@ -11,6 +11,7 @@ import { AccordionModule } from 'ng2-accordion';
 
 import { AppComponent } from './app.component';
 
+import { Query } from './query';
 import { CompletedDocumentsService } from './completed-documents.service';
 import { MaxDateDirective } from './validators/max-date.directive';
 import { MinDateDirective } from './validators/min-date.directive';
@@ -51,8 +52,8 @@ describe('AppComponent', () => {
 
         expect(app.query.startDate).toBe('12/31/2016');
         expect(app.query.startTime).toBe(6);
-        expect(app.maxDate).toBe('1/1/2017');
-        expect(app.minDate).toBe('12/25/2016');
+        expect(app.maxDate).toBe(Date.parse('1/1/2017'));
+        expect(app.minDate).toBe(Date.parse('12/25/2016'));
     }));
 
     it('should display "Invalid start date time" when Start Date is invalid', async(() => {
@@ -68,8 +69,7 @@ describe('AppComponent', () => {
         let fixture = TestBed.createComponent(AppComponent);
         let app = fixture.debugElement.componentInstance;
 
-        app.query.startDate = '12/31/2016';
-        app.query.startTime = 0;
+        app.query = new Query(new Date('12/31/2016'), 0);
 
         let result = app.formatEndDate({valid: true});
 

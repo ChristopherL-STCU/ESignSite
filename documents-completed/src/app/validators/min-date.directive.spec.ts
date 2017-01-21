@@ -16,11 +16,11 @@ import { MinDateDirective } from './min-date.directive';
     `
 })
 class TestComponent {
-    minDate: string;
+    minDate: number;
     toValidate: string;
 }
 
-describe('component: TestComponent', () => {
+describe('directive: MinDateDirective', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule],
@@ -30,7 +30,7 @@ describe('component: TestComponent', () => {
 
     it('should be valid when date is the min', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.minDate = '1/1/2017';
+        fixture.componentInstance.minDate = Date.parse('1/1/2017');
         fixture.detectChanges();
         tick();
 
@@ -45,7 +45,7 @@ describe('component: TestComponent', () => {
 
     it('should be valid when min is not specified', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.minDate = '';
+        fixture.componentInstance.minDate = Date.parse('');
         fixture.detectChanges();
         tick();
 
@@ -60,7 +60,7 @@ describe('component: TestComponent', () => {
 
     it('should not be valid when date is before min', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.minDate = '1/1/2017';
+        fixture.componentInstance.minDate = Date.parse('1/1/2017');
         fixture.detectChanges();
         tick();
 
@@ -75,7 +75,7 @@ describe('component: TestComponent', () => {
 
     it('should not be valid when date is not specified', fakeAsync(() => {
         const fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.minDate = '1/1/2017';
+        fixture.componentInstance.minDate = Date.parse('1/1/2017');
         fixture.detectChanges();
         tick();
 

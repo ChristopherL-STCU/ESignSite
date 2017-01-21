@@ -12,7 +12,7 @@ export class MaxDateDirective implements Validator, OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         const change = changes['appMaxDate'];
         if (change) {
-            this.valFn = maxDateValidator(Date.parse(change.currentValue.replace(/\u200E/g, ''))); // IE 0 width char string removal
+            this.valFn = maxDateValidator(change.currentValue);
         } else {
             this.valFn = Validators.nullValidator;
         }
@@ -27,7 +27,7 @@ export function maxDateValidator(appMaxDate): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         const controlDate = control.value === null || control.value === undefined
             ? null
-            : Date.parse(control.value.replace(/\u200E/g, '')); // IE 0 width char string removal
+            : Date.parse(control.value);
 
         return isNaN(appMaxDate) || isNaN(controlDate) || controlDate > appMaxDate
             ? { 'appMaxDate': { controlDate } }

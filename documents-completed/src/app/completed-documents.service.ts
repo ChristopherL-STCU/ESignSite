@@ -17,7 +17,7 @@ import { COMPLETEDDOCUMENTS } from './mock-completed-documents';
 @Injectable()
 export class CompletedDocumentsService {
     private code = 'a033VEPZ04RyfUkoOE8APyzvu3xjIwzB7yr9qXiLF7bBAT04ITDxQA==';
-    private url = `https://esign.azurewebsites.net/api/DocumentsCompleted?code=${this.code}&clientid=esign`;
+    private url = `https://esign-sandbox.azurewebsites.net/api/DocumentsCompleted?code=${this.code}&clientid=esign`;
 
     constructor(private http: Http) { }
 
@@ -29,9 +29,8 @@ export class CompletedDocumentsService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
 
-        query.startDate = query.startDate.replace(/\u200E/g, ''); // IE 0 width char string removal
         return this.http
-            .post(this.url, query, options)
+            .post(this.url, {startDate: query.startDate, startTime: + query.startTime}, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
