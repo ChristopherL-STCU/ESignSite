@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    azureFunctionUrl: 'https://esign.azurewebsites.net/api/DocumentsCompleted'
 };

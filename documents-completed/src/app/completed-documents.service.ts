@@ -11,14 +11,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import { CompletedDocuments } from './completed-documents';
+import { environment } from '../environments/environment';
 import { Query } from './query';
 import { COMPLETEDDOCUMENTS } from './mock-completed-documents';
 
 @Injectable()
 export class CompletedDocumentsService {
-    private code = 'a033VEPZ04RyfUkoOE8APyzvu3xjIwzB7yr9qXiLF7bBAT04ITDxQA==';
-    private url = `https://esign-sandbox.azurewebsites.net/api/DocumentsCompleted?code=${this.code}&clientid=esign`;
-
     constructor(private http: Http) { }
 
     getMockCompletedDocuments(query: Query): Observable<CompletedDocuments> {
@@ -30,7 +28,7 @@ export class CompletedDocumentsService {
         const options = new RequestOptions({ headers: headers });
 
         return this.http
-            .post(this.url, {startDate: query.startDate, startTime: + query.startTime}, options)
+            .post(environment.azureFunctionUrl, {startDate: query.startDate, startTime: + query.startTime}, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
