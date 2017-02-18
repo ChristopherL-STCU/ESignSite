@@ -3,7 +3,8 @@ import { Query } from './query';
 import { CompletedDocumentsService } from './completed-documents.service';
 import { CompletedDocuments } from './completed-documents';
 import { AccordionModule } from 'ng2-accordion';
-
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import { CompletedPackage } from './completed-package';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -29,9 +30,24 @@ export class AppComponent {
         this.minDate = weekFromToday.getTime();
 
         this.completedDocuments = new CompletedDocuments([], 0);
+        var a = new CompletedPackage();
+        a.name = 'test';
+        a.documents = [];
+        this.completedDocuments.packages = [a];
         this.submitted = false;
         this.hasError = false;
         this.hasResult = false;
+    }
+
+    save() {
+        var concatPackageNameToDocumentName = packageItem =>
+            packageItem.documents.map(document => { return {name: packageItem.name + ' : ' + document}});
+
+        var documents = this.completedDocuments.packages
+            .map(concatPackageNameToDocumentName)
+            .reduce((allDocuments, packageDocuments) => allDocuments.concat(packageDocuments));
+
+        return new Angular2Csv(documents, 'CompletedDocuments');
     }
 
     lookUp() {

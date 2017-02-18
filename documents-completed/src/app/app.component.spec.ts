@@ -110,4 +110,17 @@ describe('AppComponent', () => {
         expect(app.hasResult).toBeTruthy();
     }));
 
+    fdescribe('Saving to a CSV', () => {
+        it('should save single package documents', async(() => {
+            let fixture = TestBed.createComponent(AppComponent);
+            let app = fixture.debugElement.componentInstance;
+
+            app.completedDocuments.packages = [{name:'test', documents:['one', 'two']}];
+
+            //let result = app.save();
+
+           // expect(result.length).toBe(2);
+        }));
+    });
+
 });

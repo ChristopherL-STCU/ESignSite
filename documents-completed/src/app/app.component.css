@@ -1,23 +1,28 @@
-.completed-list-container {
-    margin-top: 40px;
-}
-
 .badge {
     margin-left: 10px;
 }
 
-.well {
-    display: inline-block;
-    font-size: large;
-    font-weight: bold;
-}
-
-.well span {
-    font-size: xx-large;
+.completed-list-container {
+    margin-top: 40px;
 }
 
 .progress {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+}
+
+.well {
+    display: inline-block;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.well button {
+    margin-top: 20px;
+}
+
+.well span {
+    font-size: xx-large;
 }

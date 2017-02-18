@@ -56,7 +56,13 @@
 <div class="container completed-list-container" [hidden]="!hasResult">
     <div class="well well-large">
         <div>Completed count: <span>{{ completedDocuments.count }}</span></div>
+
+        <button type="button"
+                class="btn btn-default" 
+                [hidden]="completedDocuments.count > 0"
+                [appCsv]="completedDocuments.packages">Save to CSV</button>
     </div>
+
 
     <accordion [showArrows]="true">
         <accordion-group *ngFor="let package of completedDocuments.packages">
