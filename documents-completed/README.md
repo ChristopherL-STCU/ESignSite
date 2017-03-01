@@ -1,7 +1,6 @@
 # DocumentsCompleted
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version
-1.0.0-beta.24.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.0.
 
 ## Development server
 
@@ -15,7 +14,7 @@ Run `ng lint` to verify there are not any code style issues.
 Run `ng test --single-run --code-coverage` to verify no code changes broke existing functionality.
 Then view coverage report in `coverage/`.
 
-Run `ng serve` in one terminal and `ng e2e` in another to verify the application still functions.
+Run `ng e2e` to verify the application still functions.
 
 Run `ng github-pages:deploy --base-href /ESignSite/documents-completed/` to deploy.
 
@@ -23,3 +22,4 @@ Deployment is to GitHub pages at `https://stcu.github.io/ESignSite/documents-com
 
 Ensure the Azure Function used to retrieve the completed documents, specified in
 `completed-documents.service.ts`, allows CORS access from the deployment location.
+

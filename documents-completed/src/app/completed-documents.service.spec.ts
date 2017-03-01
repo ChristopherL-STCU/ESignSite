@@ -32,8 +32,8 @@ describe('CompletedDocumentsService', () => {
     }));
 
     it('should retrieve completed documents', async(() => {
-        let options = new ResponseOptions({ status: 200, body: { count: 1, documents: [{}] } });
-        let response = new Response(options);
+        const options = new ResponseOptions({ status: 200, body: { count: 1, documents: [{}] } });
+        const response = new Response(options);
         backend.connections.subscribe((c: MockConnection) => c.mockRespond(response));
 
         service.getCompletedDocuments(query)
@@ -43,8 +43,8 @@ describe('CompletedDocumentsService', () => {
     }));
 
     it('should write error when failure to retrieve completed documents', async(() => {
-        let options = new ResponseOptions({ status: 500, body: { message: 'test failure' } });
-        let response = new Response(options);
+        const options = new ResponseOptions({ status: 500, body: { message: 'test failure' } });
+        const response = new Response(options);
         backend.connections.subscribe((c: MockConnection) => c.mockRespond(response));
         spyOn(console, 'error');
 

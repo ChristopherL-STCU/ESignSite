@@ -28,14 +28,14 @@ describe('AppComponent', () => {
     }));
 
     it('should create the app', async(() => {
-        let fixture = TestBed.createComponent(AppComponent);
-        let app = fixture.debugElement.componentInstance;
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
 
     it('should set default values', async(() => {
-        let fixture = TestBed.createComponent(AppComponent);
-        let app = fixture.debugElement.componentInstance;
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
 
         expect(app.completedDocuments.count).toBe(0);
         expect(app.submitted).toBeFalsy();
@@ -46,8 +46,8 @@ describe('AppComponent', () => {
     it('should set default date', async(() => {
         jasmine.clock().mockDate(new Date(2017, 0, 1));
 
-        let fixture = TestBed.createComponent(AppComponent);
-        let app = fixture.debugElement.componentInstance;
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
 
         expect(app.query.startDate).toBe('12/31/2016');
         expect(app.query.startTime).toBe(6);
@@ -56,29 +56,29 @@ describe('AppComponent', () => {
     }));
 
     it('should display "Invalid start date time" when Start Date is invalid', async(() => {
-        let fixture = TestBed.createComponent(AppComponent);
-        let app = fixture.debugElement.componentInstance;
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
 
-        let result = app.formatEndDate({valid: false});
+        const result = app.formatEndDate({valid: false});
 
         expect(result).toBe('Invalid start date time');
     }));
 
     it('should display display next day after start date', async(() => {
-        let fixture = TestBed.createComponent(AppComponent);
-        let app = fixture.debugElement.componentInstance;
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
 
         app.query.startDate = '12/31/2016';
         app.query.startTime = 0;
 
-        let result = app.formatEndDate({valid: true});
+        const result = app.formatEndDate({valid: true});
 
         expect(result).toBe('1/1/2017 0:00');
     }));
 
     it('should reset form when look up error occurs', fakeAsync(() => {
-        let fixture = TestBed.createComponent(AppComponent);
-        let app = fixture.debugElement.componentInstance;
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
 
         spyOn(app.completedDocumentsService, 'getCompletedDocuments').and.callFake(
             () => { return Observable.throw(new Error('error!')); }
@@ -94,8 +94,8 @@ describe('AppComponent', () => {
     }));
 
     it('should display completed documents after look up', fakeAsync(() => {
-        let fixture = TestBed.createComponent(AppComponent);
-        let app = fixture.debugElement.componentInstance;
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
 
         spyOn(app.completedDocumentsService, 'getCompletedDocuments').and.returnValue(
             Observable.of({count: 1, documents: [{}]})

@@ -20,9 +20,9 @@ export class AppComponent {
     public hasResult: boolean;
 
     constructor(private completedDocumentsService: CompletedDocumentsService) {
-        let today = new Date();
-        let weekFromToday = new Date(new Date().setDate(today.getDate() - 7));
-        let yesterday = new Date(new Date().setDate(today.getDate() - 1));
+        const today = new Date();
+        const weekFromToday = new Date(new Date().setDate(today.getDate() - 7));
+        const yesterday = new Date(new Date().setDate(today.getDate() - 1));
 
         this.query = new Query(yesterday.toLocaleDateString('en-US'), 6);
         this.maxDate = today.toLocaleDateString('en-US');
@@ -53,8 +53,9 @@ export class AppComponent {
     }
 
     formatEndDate(form) {
-        let startDate = new Date(this.query.startDate.replace(/\u200E/g, '')); // IE 0 width char string removal
-        let endDate = (new Date(startDate.setDate(startDate.getDate() + 1))).toLocaleDateString('en-US');
+        const startDate = new Date(this.query.startDate);
+        const endDate = (new Date(startDate.setDate(startDate.getDate() + 1))).toLocaleDateString('en-US');
+
         return form.valid
             ? endDate + ' ' + this.query.startTime + ':00'
             : 'Invalid start date time';

@@ -10,8 +10,8 @@ describe('documents-completed App', function() {
     it('should set the start date time', () => {
         page.navigateTo();
 
-        let today = new Date();
-        let yesterday = new Date(today.setDate(today.getDate() -1))
+        const today = new Date();
+        const yesterday = new Date(today.setDate(today.getDate() - 1));
 
         expect(page.getStartDate()).toEqual(yesterday.toLocaleDateString('en-US'));
         expect(page.getStartTime()).toEqual('6');

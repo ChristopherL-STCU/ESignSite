@@ -40,7 +40,7 @@ export class CompletedDocumentsService {
         if (response.status < 200 || response.status >= 300) {
             throw new Error('Bad response status: ' + response.status);
         }
-        let body = response.json();
+        const body = response.json();
         return body || {};
     }
 
